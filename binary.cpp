@@ -22,7 +22,7 @@ int binary(int arr[],int n, int key)
      }
      else
      {
-         e=mid+1;
+         s=mid+1;
 
      }
 
