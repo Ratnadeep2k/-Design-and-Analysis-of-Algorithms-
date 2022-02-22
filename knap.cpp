@@ -1,50 +1,38 @@
-#include<bits-stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-#define vi vector<int>
-#define pii pair<int,int>
-#define vii vector<pii>
-#define rep(i,a,b) for( int i=a;i<b; i++) 
-#define ff first
-#define ss second
-#define setBits(x) builtin_popcount(x)
+bool compare(pair<int,int>p1,pair<int,int>p2){
+    double v1=(double)p1.first/p1.second;
+    double v2=(double)p2.first/p2.second;
 
-bool compare(pii p1,pii p2)
-{
-    double v1=(double) p1.ff/p1.ss;
-    double v2=(double) p2.ff/p2.ss;
-    return v1>v2;
+    return v1>v2;    
 
 }
-
-int main()
-{   
+int main(){
     int n;
     cin>>n;
-    vii a(n);
-    rep(i,0,n )
-    {
-        cin>>a[i].ff>>a[i].ss;
-    }
-
+    vector<pair<int,int>> a(n);
     int w;
     cin>>w;
+
+    for(int i=0;i<n;i++){
+        cin>>a[i].first>>a[i].second;
+    }
+
     sort(a.begin(),a.end(),compare);
-    int ans = 0;
-    rep(i,0,n)
-    {
-        if(w>=a[i].ss)
-        {
-            ans+= a[i].ff;
-            w-=a[i].ss;
+    int ans=0;
+
+    for(int i=0;i<n;i++){
+       
+        if(w>=a[i].second){
+            ans+=a[i].first;
+            w-=a[i].second;
             continue;
         }
-        double vw=(double) a[i].ff/a[i].ss;
-        ans+= vw*w;
+        double vw=(double)a[i].first/a[i].second;
+        ans+=w*vw;
         w=0;
         break;
-
     }
-    cout<<ans<< endl;
 
-    return 0;
+    cout<<ans<<endl;
 }
